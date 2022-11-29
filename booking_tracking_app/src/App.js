@@ -14,12 +14,11 @@ const App = () => {
 
   useEffect(() => {
     BooksAPI.getAll().then(books => setBooks(books));
-  }, [])
+  }, [books])
 
-  const changeShelf = async (bookID, shelf) => {
-    const book = await BooksAPI.get(bookID)
+  const changeShelf = async (book, shelf) => {
     await BooksAPI.update(book, shelf);
-    BooksAPI.getAll().then(books => setBooks(books))
+    await BooksAPI.getAll().then(books => setBooks(books))
   }  
 
   return (
